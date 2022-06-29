@@ -10,7 +10,7 @@ Prieto, Torero, Rondon & Huaire (2022). Nuevas herramientas para analizar la ocu
 
 
 [ENG]
-URBAN-RURAL CONTINUUN
+URBAN-RURAL CONTINUUM
 
 The following algorithm has been developted in the context of the paper "New tools for the analysis of territorial occupation in Peru: towards a paradigm shift in public administration" which has been published in the indexed journal Espacio y Desarrollo (39). 
 
