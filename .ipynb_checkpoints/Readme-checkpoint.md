@@ -34,11 +34,12 @@ high=create_continuum(density_values[0], band=band_1, affine=aff_1, ccpp_shp=ccp
 ```
 ### Resultados
 #### Conglomerados vistos a través de transectos
-![alt text](https:/github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg?raw=true)
+![alt text](https:/github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg "Transectos")
+           
 
 
 #### Conglomerados de Lima, Tacna, Cajamarca e Iquitos
-![alt text](https:/github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg?raw=true)
+![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg "Transectos")
 
 ### Análisis tipologico
 
