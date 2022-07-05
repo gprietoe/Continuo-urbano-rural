@@ -41,17 +41,17 @@ def extract_coord(coor, close_holes=False):
     return poly
 
 ### THE FUNCTION "EXTRACT_SHAPES" RETRIEVE THE POLYGONS FROM THE DENSITY'S RASTER ACCORDING TO AN ESPECIFIED DENSITY VALUE.
-def extract_shapes(density_val_2, band_ex_2, band_1_aff_2, close_holes, crs_EPSG):
-    data={'raw_geometry':[]}
+def extract_shapes(density_val_2, band_ex_2, band_1_aff_2, close_holes, crs_EPSG, pixel_con):
+    data={'geometry':[]}
     
     band_ex_2=recode_raster(density_val_2, band_ex_2)                             
     mask_shp = band_ex_2 == 1                                                    
     for geom, value in features.shapes(band_ex_2,                                
                                        mask=mask_shp, transform=band_1_aff_2,    
-                                       connectivity=4):                          
-        data['raw_geometry'].append(extract_coord(geom, close_holes))
+                                       connectivity=pixel_con):                          
+        data['geometry'].append(extract_coord(geom, close_holes))
     
-    den_1=gpd.GeoDataFrame(data, geometry='raw_geometry')                        
+    den_1=gpd.GeoDataFrame(data, geometry='geometry')                        
     den_1.crs = CRS.from_epsg(crs_EPSG)                                             
     return den_1
 
@@ -66,7 +66,7 @@ def population_criteria(density_shp,ccpp_x, pob_min_0):
     return den_1f
 
 ### AT LAST, WE CALL THE FUNCTION DEFINED ABOVE TO CREATE A NEW FUNCTION NAMED CONTINUUM WHICH RETRIEVE POLYGONS ACCORDING THE DENSITY'S VALUE AND THE MINIMUN POPULATION ACCEPTED
-def create_continuum(density_val_3, density_tif=None, band=None, affine=None, ccpp_shp=None, pob_minima=None, no_holes=False, crs_EPSG=32718):
+def create_continuum(density_val_3, density_tif=None, band=None, affine=None, ccpp_shp=None, pob_minima=None, no_holes=False, crs_EPSG=32718, pixel_con=4):
     """
     - density_val_3: It's the density's value that will be used tu create the urban-rural continuoun
     - density_tif: optinal - it's the raster's path to create the urban-rural continuoun
@@ -76,12 +76,13 @@ def create_continuum(density_val_3, density_tif=None, band=None, affine=None, cc
     - pob_minima: opional - it's the minimun value of population accepted for creating the urban-rural continoun
     - no_holes: opional - If it's True the retrived shapes haven't have any holes in their interior
     - crs_EPSG: optional - Default = EPSG:32718. It's the projection value used to project the new shape
+    - pixel_con: optional - Default = 4. It's the connectivity value uses to connect each pixel 
     """
     if density_tif is None:
-        den_1=extract_shapes(density_val_3, band, affine, no_holes, crs_EPSG)      
+        den_1=extract_shapes(density_val_3, band, affine, no_holes, crs_EPSG, pixel_con)      
     else:
         band, affine=open_raster_rio(density_tif)                                  
-        den_1=extract_shapes(density_val_3, band, affine, no_holes, crs_EPSG)      
+        den_1=extract_shapes(density_val_3, band, affine, no_holes, crs_EPSG, pixel_con)      
     
     if (ccpp_shp is None) & (pob_minima is None):
         return den_1
