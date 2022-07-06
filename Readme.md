@@ -30,11 +30,12 @@ population_values=[50000]
 
 ## Se calcula el conglomerado de alta densidad utilizando la función "create_continuum"
 high=create_continuum(density_values[0], band=band_1, affine=aff_1, ccpp_shp=ccpp, pob_minima=population_values[0], no_holes=True)
-
+medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccpp, pob_minima=population_values[1], no_holes=True)
+low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 ```
 ### Resultados
 #### Conglomerados vistos a través de transectos
-![alt text](https:/github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg "Transectos")
+![alt text](https:&/github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg "Transectos")
            
 
 
