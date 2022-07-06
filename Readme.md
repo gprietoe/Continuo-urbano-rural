@@ -35,22 +35,27 @@ low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 ```
 ### Resultados
 #### Conglomerados vistos a través de transectos
-![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg?raw=true "Transectos")
+![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg?raw=true "Transectos")
            
 
 
 #### Conglomerados de Lima, Tacna, Cajamarca e Iquitos
-![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg "Transectos")
+![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg "Transectos")
 
 ### Análisis tipologico
 
 ```python
+import pandas as pd
+import numpy as np
+import geopandas as gpd 
 
 
-
+from Continuum import spatial_tipology
+## Se cargan los conglomerados
+tipo=spatial_tipology(high, medium, low)
 ```
-
 ### Resultados
+
 
 ## Citado
 Por favor, citar de la siguiente manera:
