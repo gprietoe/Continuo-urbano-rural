@@ -34,8 +34,6 @@ medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccp
 low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 ```
 ### Resultados
-
-![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg)
 #### Conglomerados vistos a través de transectos
 ![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais.jpg?raw=true "Transectos")
            
