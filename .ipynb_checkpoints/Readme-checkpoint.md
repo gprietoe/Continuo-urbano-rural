@@ -1,9 +1,9 @@
-### ESP
+## ESP
 # Continium urbano-rural
 
-Continium urbano-rural es un simple colección de funciones para delimitar y analizar la ocupación del territorio peruano empleando datos de densidad de viviendas y datos de población actualizados al 2017. Los algoritmos fueron desarrollado en el contexto del artículo "Nuevas herramientas para analizar la ocupación del territorio peruano: hacia un cambio de paradigma en la gestión pública", publicado en la revista indexada Espacio y Desarrollo (39).
+Continium urbano-rural es una colección de funciones para delimitar y analizar la ocupación del territorio peruano empleando datos de densidad de viviendas por hectáreas y datos de población actualizados al 2017. Los algoritmos fueron desarrollado en el contexto del artículo "Nuevas herramientas para analizar la ocupación del territorio peruano: hacia un cambio de paradigma en la gestión pública", publicado en la revista indexada Espacio y Desarrollo (39).
 
-El algoritmo ha sido desarrollado en Python (100%) para el uso de cualquier interesado, principalmente para la gestión pública y la investigación.
+El algoritmo ha sido desarrollado en Python (100%) para el uso de cualquier interesado, principalmente para la gestión pública y la investigación. Las bases de datos resultantes de la presente investigación pueden ser descargas de la carpeta 02. Results
 
 ## Algoritmos
 
@@ -25,12 +25,14 @@ path_density=(path_d+"\\01. Dataset\\DensidadViviendas.tif")
 band_1, aff_1=open_raster_rio(path_density)
 
 ### definimos el valor de densidad y el de población de ser el caso
-density_values=[3.9]
-population_values=[50000]
+density_values=[3.9, 0.8, 0.13]
+population_values=[50000, 5000]
 
 ## Se calcula el conglomerado de alta densidad utilizando la función "create_continuum"
-high=create_continuum(density_values[0], band=band_1, affine=aff_1, ccpp_shp=ccpp, pob_minima=population_values[0], no_holes=True)
-medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccpp, pob_minima=population_values[1], no_holes=True)
+high=create_continuum(density_values[0], band=band_1, affine=aff_1, ccpp_shp=ccpp,
+                      pob_minima=population_values[0], no_holes=True)
+medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccpp,
+                        pob_minima=population_values[1], no_holes=True)
 low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 ```
 ### Resultados
@@ -72,10 +74,10 @@ Prieto, Torero, Rondon & Huaire (2022). Nuevas herramientas para analizar la ocu
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+(EN CONSTRUCCIÓN)
 
 
-Continium urbano-rural is a simple set of functions to delinate and analize 
+
 
 ## ENG
 # Continium urbano-rural
