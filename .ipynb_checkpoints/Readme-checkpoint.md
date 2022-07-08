@@ -41,28 +41,27 @@ low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 
 ```python
 import geopandas as gpd 
-
 from Continuum import spatial_tipology
+
 ## Se cargan los conglomerados
-
 high=gpd.read_file('01_Conglomerado_alta_densidad.shp')
-medi=gpd.read_file(path_d+'02_Conglomerado_media_densidad.shp')
-low=gpd.read_file(path_d+'03_Conglomerado_baja_densidad.shp')
+medi=gpd.read_file('02_Conglomerado_media_densidad.shp')
+low=gpd.read_file('03_Conglomerado_baja_densidad.shp')
 
+## se calcula la tipología para cada densidad 
 tipology=spatial_tipology(high, medium, low)
 tipology.head(3)
 
-       id_n_left tipology density
-0              1       B0     low
-1              2       B0     low
-2              3       B0     low
+       density  id_n  tipology 
+0      low      1     B0     
+1      low      2     B0
+2      low      3     B0
 ...
-
 
 ```
 ### Resultados
-#### Conglomerados de Lima, Tacna, Cajamarca e Iquitos - tipos D4, D1
-![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg "Transectos")
+#### Conglomerados de Lima Metropolitana, Tacna, Madre de Dios y Chepén-Guadalupe - tipos D4, D3, D1 y B2
+![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/Casos_tipología_pais_2.jpg?raw=true "Casos_tipología")
 
 
 

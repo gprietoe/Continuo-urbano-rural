@@ -111,7 +111,8 @@ def spatial_tipology(np_1,np_2,np_3, geometry='geometry', id_gdf='id_n'):
     np_ft=(np_1ref.
            assign(density="low").
            append(np_1r3).
-           append(np_3r2))[['id_n_left','tipology','density']].copy()
+           append(np_3r2).
+           rename({'id_n_left':'id_n'},axis=1))[['density','id_n','tipology']].copy()
     
     return np_ft
     
