@@ -68,6 +68,9 @@ def population_criteria(density_shp,ccpp_x, pob_min_0):
 ### AT LAST, WE CALL THE FUNCTION DEFINED ABOVE TO CREATE A NEW FUNCTION NAMED CONTINUUM WHICH RETRIEVE POLYGONS ACCORDING THE DENSITY'S VALUE AND THE MINIMUN POPULATION ACCEPTED
 def create_continuum(density_val_3, density_tif=None, band=None, affine=None, ccpp_shp=None, pob_minima=None, no_holes=False, crs_EPSG=32718, pixel_con=4):
     """
+    Returns a DataFrame containing the tipology for each density cluster 
+Parameters
+----------
     - density_val_3: It's the density's value that will be used tu create the urban-rural continuoun
     - density_tif: optinal - it's the raster's path to create the urban-rural continuoun
     - band: optional - if it's provided, the function use the specified band instead of open rasterio
@@ -76,7 +79,11 @@ def create_continuum(density_val_3, density_tif=None, band=None, affine=None, cc
     - pob_minima: opional - it's the minimun value of population accepted for creating the urban-rural continoun
     - no_holes: opional - If it's True the retrived shapes haven't have any holes in their interior
     - crs_EPSG: optional - Default = EPSG:32718. It's the projection value used to project the new shape
-    - pixel_con: optional - Default = 4. It's the connectivity value uses to connect each pixel 
+    - pixel_con: optional - Default = 4. It's the connectivity value uses to connect each pixel
+    
+    Notes
+    -----
+    
     """
     if density_tif is None:
         den_1=extract_shapes(density_val_3, band, affine, no_holes, crs_EPSG, pixel_con)      

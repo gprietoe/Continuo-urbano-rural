@@ -37,24 +37,34 @@ low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 #### Conglomerados vistos a través de transectos
 ![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg?raw=true "Transectos")
            
-
-
-#### Conglomerados de Lima, Tacna, Cajamarca e Iquitos
-![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg "Transectos")
-
 ### Análisis tipologico
 
 ```python
-import pandas as pd
-import numpy as np
 import geopandas as gpd 
-
 
 from Continuum import spatial_tipology
 ## Se cargan los conglomerados
-tipo=spatial_tipology(high, medium, low)
+
+high=gpd.read_file('01_Conglomerado_alta_densidad.shp')
+medi=gpd.read_file(path_d+'02_Conglomerado_media_densidad.shp')
+low=gpd.read_file(path_d+'03_Conglomerado_baja_densidad.shp')
+
+tipology=spatial_tipology(high, medium, low)
+tipology.head(3)
+
+       id_n_left tipology density
+0              1       B0     low
+1              2       B0     low
+2              3       B0     low
+...
+
+
 ```
 ### Resultados
+#### Conglomerados de Lima, Tacna, Cajamarca e Iquitos - tipos D4, D1
+![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg "Transectos")
+
+
 
 
 ## Citado
