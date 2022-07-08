@@ -10,25 +10,22 @@ El algoritmo ha sido desarrollado en Python (100%) para el uso de cualquier inte
 ### Creación del continuo-poblado
 
 ```python
-import pandas as pd
 import geopandas as gpd
-
-from Continuum import create_continuum
 from Continuum import open_raster_rio
+from Continuum import create_continuum
 
-### Se carga el shp de centros poblados 2017(INEI)
-path_d=r"C:\Users\Guillermo\Desktop/Python\01. Continuo urbano-rural"
-ccpp=gpd.read_file(path_d+'\\01. Dataset\\inei_centros_poblados_2017_edits.shp')
+### Se carga el shp de centros poblados 2017(INEI) en EPSG:32718
+ccpp=gpd.read_file('inei_centros_poblados_2017_edits.shp')
 
-### Se obtiene la banda y el affine del raster de densidad
-path_density=(path_d+"\\01. Dataset\\DensidadViviendas.tif")
-band_1, aff_1=open_raster_rio(path_density)
+### Se guarda la banda y el affine del raster de densidad
+path_density=('DensidadViviendas.tif') ## Raster de densidad de viv/ha.
+band_1, aff_1=open_raster_rio(path_density) ## Función simplificada de rasterio.open()
 
-### definimos el valor de densidad y el de población de ser el caso
+### definimos el valor de densidad y el de población de corresponder 
 density_values=[3.9, 0.8, 0.13]
 population_values=[50000, 5000]
 
-## Se calcula el conglomerado de alta densidad utilizando la función "create_continuum"
+## Se calculan los conglomerados
 high=create_continuum(density_values[0], band=band_1, affine=aff_1, ccpp_shp=ccpp,
                       pob_minima=population_values[0], no_holes=True)
 medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccpp,
@@ -36,6 +33,7 @@ medium=create_continuum(density_values[1],band=band_1, affine=aff_1,ccpp_shp=ccp
 low=create_continuum(density_values[2], band=band_1, affine=aff_1)
 ```
 ### Resultados
+
 #### Conglomerados vistos a través de transectos
 ![alt text](https://github.com/gprietoe/Continuo-urbano-rural/blob/main/03.%20Images/transectos_pais_2.jpg?raw=true "Transectos")
            
