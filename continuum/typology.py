@@ -25,7 +25,7 @@ def sjoin_den(gdf_1, gdf_2, relation_s):
     '''
     var1,var2=variables_names(relation_s)
     
-    p1 = gpd.sjoin(gdf_1, gdf_2, how="left", predicate='intersects')
+    p1 = gpd.sjoin(gdf_1, gdf_2, how="left", predicate='contains')
     p1[var1]=np.where(p1.index_right.notna(),1,0) ##toma valor 1 cuando encuentra algún polígono de densidad 3.9 en el polígono de densidad 0.8
     p1=p1.groupby('id_n_left').sum().reset_index().sort_values(var1) ## se suma el número de continuos de densidad 3.9 en el polígono de densidad 0.8
     p1[var2]=np.where(p1[var1]>=1,1,0) ## Creamos una variable dummy 1 sí continene un continuo poblado de densidad 3; 0, no contiene un continuo poblado de densidad 3
@@ -90,19 +90,19 @@ def spatial_tipology(np_1,np_2,np_3, geometry='geometry', id_gdf='id_n'):
     -----
     To achive the right results it's so important keeping the suggestion GeoDataFrame orden: High density cluster (np_1), Medium density cluster (np_2) and low density cluster (np_3)
     '''
-    np_1re=cleaning_gdf(np_1,geometry, id_gdf)
+    np_1re=cleaning_gdf(np_3,geometry, id_gdf)
     np_2re=cleaning_gdf(np_2,geometry, id_gdf)
-    np_3re=cleaning_gdf(np_3,geometry, id_gdf)
+    np_3re=cleaning_gdf(np_1,geometry, id_gdf)
     
     np_1ref, np_2ref= agg_gdf(np_1re,np_2re,np_3re)
     
-    np_1r3=gpd.sjoin(np_1ref[['tipology','geometry']], np_2ref, how="right", predicate='intersects')
+    np_1r3=gpd.sjoin(np_1ref[['tipology','geometry']], np_2ref, how="right", predicate='contains')
     np_1r3['tipology_left']=np.where(np_1r3.index_left.isna(),np_1r3.tipology_right, np_1r3.tipology_left)
     np_1r3=np_1r3.reset_index()[['id_n_left','geometry','n3_2','dum3_2','tipology_left']].copy()
     np_1r3.rename({'tipology_left':'tipology'},axis=1, inplace=True)
     np_1r3["density"]="medium"
 
-    np_3r2=gpd.sjoin(np_1ref[['tipology','geometry']], np_3re, how='right', predicate='intersects').reset_index()
+    np_3r2=gpd.sjoin(np_1ref[['tipology','geometry']], np_3re, how='right', predicate='contains').reset_index()
     np_3r2['tipology_left']=np.where(np_3r2.index_left.isna(),'A0',np_3r2.tipology)
     np_3r2=np_3r2[['id_n','geometry','tipology_left']].copy()
     np_3r2.rename({'id_n':'id_n_left','tipology_left':'tipology'},axis=1, inplace=True)

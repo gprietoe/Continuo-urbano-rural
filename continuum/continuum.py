@@ -2,7 +2,9 @@ import pandas as pd
 import geopandas as gpd
 
 import numpy as np
+
 import rasterio as rio 
+import rasterstats
 
 from rasterio import features                                                                                 
 from shapely.geometry import Polygon                   
@@ -65,18 +67,17 @@ def population_criteria(density_shp,ccpp_x, pob_min_0):
     den_1f=density_shp.merge(pob_d1, left_index=True, right_index=True, how='inner')                                       
     return den_1f
 
-### AT LAST, WE CALL THE FUNCTION DEFINED ABOVE TO CREATE A NEW FUNCTION NAMED CONTINUUM WHICH RETRIEVE POLYGONS ACCORDING THE DENSITY'S VALUE AND THE MINIMUN POPULATION ACCEPTED
 def create_continuum(density_val_3, density_tif=None, band=None, affine=None, ccpp_shp=None, pob_minima=None, no_holes=False, crs_EPSG=32718, pixel_con=4):
     """
     Returns a DataFrame containing the tipology for each density cluster 
-Parameters
-----------
+    Parameters
+    ----------
     - density_val_3: It's the density's value that will be used tu create the urban-rural continuoun
     - density_tif: optinal - it's the raster's path to create the urban-rural continuoun
     - band: optional - if it's provided, the function use the specified band instead of open rasterio
     - affain: optional - if it's provided the function use the specified raster's affain 
     - ccpp_shp: opional - it's the ccpp's shape that include population data for each ccpp
-    - pob_minima: opional - it's the minimun value of population accepted for creating the urban-rural continoun
+    - pob_minima: opional - it's the minimun value of population accepted for creating the urban-rural continuum
     - no_holes: opional - If it's True the retrived shapes haven't have any holes in their interior
     - crs_EPSG: optional - Default = EPSG:32718. It's the projection value used to project the new shape
     - pixel_con: optional - Default = 4. It's the connectivity value uses to connect each pixel
@@ -96,3 +97,23 @@ Parameters
     else:
         shp_density= population_criteria(den_1,ccpp_shp, pob_minima)               
         return shp_density
+    
+def add_pop_sum(gdf_d, density_tif, pob_minima):
+    '''
+    Returns a GeoDataFrame filtered by population
+    It has to be use with create_continuum to calculate each cluster using data from open distribution of population
+    Parameters
+    -------------
+    gdf_d: - it's the preliminary vector data created by the create_continuum function.
+    density_tif: - it's the raster's path used to create the urban-rural continuum
+    pob_minima: - it's the minimum population value accepted for creating the urban-rural continuum
+    '''
+    pop_sum_d={"pop_t":[]}
+    for p in rasterstats.zonal_stats(gdf_d,density_tif,stats=['sum']):
+        pop_sum_d["pop_t"].append(p.get("sum"))
+        
+    pop_sum=pd.DataFrame(pop_sum_d)
+    gdf_f=gdf_d.join(pop_sum)
+    gdf_f=gdf_f[gdf_f.pop_t>=pob_minima].copy()
+    
+    return gdf_f   
