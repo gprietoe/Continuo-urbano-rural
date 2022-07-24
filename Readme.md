@@ -104,5 +104,6 @@ low=(continuum.create_continuum(density_values[2], band=band_1, affine=aff_1, cr
 ## Citado 
 
 For citation purpose please use the following:
+
 Prieto, Torero, Rondon & Huaire (2021). Nuevas herramientas para analizar la ocupación del territorio peruano: hacia un cambio de paradigma en la gestión pública. Espacio y Desarrollo (38). PUCP. Lima
 
