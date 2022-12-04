@@ -1,7 +1,7 @@
 ## ENG
 # Continuum urbano-rural
 
-The Continuum urbano-rural is module developed to delineate and analize the Peruvian territory using building density data and population data from the last national census. The module allows users to delineate urban, rural and transitioning areas according with density and population benchmarks. Then these results can be used to create a spatial tipology that combine the 12 possible spatial associations between areas.
+The Continuum urbano-rural is module developed to delineate and analyze the Peruvian territory using building density data and population data from the last national census. The module allows users to delineate urban, rural and transitioning areas according with density and population benchmarks. Then these results can be used to create a spatial tipology that combine the 12 possible spatial associations between areas.
 
 The following algorithms have been developed in the context of the paper "New tools for the analysis of territorial occupation in Peru: towards a paradigm shift in public administration" which has been published in the journal Espacio y Desarrollo (38). 
 
