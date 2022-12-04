@@ -1,17 +1,21 @@
-## ESP
-# Continuum urbano-rural
-
-Continuum urbano-rural es una colección de modulos para delimitar y analizar la ocupación del territorio peruano empleando datos de densidad de viviendas por hectáreas y datos de población actualizados al 2017. Los algoritmos fueron desarrollado en el contexto del artículo "Nuevas herramientas para analizar la ocupación del territorio peruano: hacia un cambio de paradigma en la gestión pública", publicado en la revista indexada Espacio y Desarrollo (38).
-
-El algoritmo ha sido desarrollado en Python (100%) para el uso de cualquier interesado, principalmente para la gestión pública y la investigación. Las bases de datos resultantes de la presente investigación pueden ser descargas de la carpeta 02. Results
-
-
 ## ENG
 # Continuum urbano-rural
 
-The Continuum urbano-ruran is a collection of modules developted to delineate and analize the Peruvian territory using building density data and population data from the last national census. The following algorithms have been developted in the context of the paper "New tools for the analysis of territorial occupation in Peru: towards a paradigm shift in public administration" which has been published in the indexed journal Espacio y Desarrollo (38). 
+The Continuum urbano-rural is module developed to delineate and analize the Peruvian territory using building density data and population data from the last national census. The module allows users to delineate urban, rural and transitioning areas according with density and population benchmarks. Then these results can be used to create a spatial tipology that combine the 12 possible spatial associations between areas.
+
+The following algorithms have been developed in the context of the paper "New tools for the analysis of territorial occupation in Peru: towards a paradigm shift in public administration" which has been published in the journal Espacio y Desarrollo (38). 
 
 The algorithm has been developed 100% in python with the purpose to be used by anyone. Aim: public administration and research.
+
+## ESP
+# Continuum urbano-rural
+
+Continuum urbano-rural es un modulo para delimitar y analizar la ocupación del territorio peruano empleando datos de densidad de viviendas por hectáreas y datos de población actualizados al 2017. El modulo permite demilimitar áreas urbanas, rurales y urbano rurales de acuerdo con determinados parámetros de densidad y población. Luego estos resultados pueden ser usado para crear una tipología espacial que combina las 12 posibilidades de asociación espacial entre las 3 áreas previamente calculadas.
+
+Los algoritmos fueron desarrollado en el contexto del artículo "Nuevas herramientas para analizar la ocupación del territorio peruano: hacia un cambio de paradigma en la gestión pública", publicado en la revista indexada Espacio y Desarrollo (38).
+
+El algoritmo fue desarrollado en Python (100%) para el uso de cualquier interesado, principalmente para la gestión pública y la investigación. Las bases de datos resultantes de la presente investigación pueden ser descargadas de la carpeta 02. Results
+
 
 ## Algoritmos
 
